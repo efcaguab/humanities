@@ -42,9 +42,9 @@ headers <- read_excel(path = data_source,
 
 ## Tidying data
 
-It is much easier to manage the data if the data frame is "tall" from the begining. This is because that way it's not necessary to enter any name or row number manually. 
+It is much easier to manage the data if the data frame is "tall" from the beginning. This is because that way it's not necessary to enter any name or row number manually. 
 
-To have a tidy dataframe from the beginning we leverage the power of the function `na.locf` from the `zoo` package. This function fills NA values (that arrise from the merged cells in Excel) with the last non-na cell before. First we use it across rows to create consistent column names, and then across cols to fill the field of study.
+To have a tidy data frame from the beginning we leverage the power of the function `na.locf` from the `zoo` package. This function fills NA values (that arise from the merged cells in Excel) with the last non-NA cell before. First we use it across rows to create consistent column names, and then across cols to fill the field of study.
 
 ```{r tidying}
 # create column names based on the headers which contains info in qualification type, level and year
@@ -91,10 +91,8 @@ majors <- majors %>%
 
 ## Create tall data
 
-The data is currently separated out both by year and by level of study, which means it can't immediately be turned into useful tall data. To get round this, I created a dataframe for each year, standardised the column names and then bound them back into a single dataframe
-
 ```{r tall data}
-# It's all done :) no need to anything manually, just need to rename the columns so they match the names you gave them
+# It's all done :) no need to anything manually, just need to rename the columns so they match the names you gave them so the rest of the code works 
 majors_taller <- majors %>%
   rename(Major = field_detailed, 
          Field.of.study = field_broad)
